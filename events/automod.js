@@ -10,7 +10,7 @@ const parolacce = [
   'mongoloide', 'down', 'disabile', 'porco dio', 'porcodio', 'dio cane',
   'dio porco', 'madonna puttana', 'gesù cristo', 'cristo', 'cazzo di dio',
   'vaffanculo dio', 'dio bastardo', 'merda', 'figlio di puttana',
-  'figlio di troia', 'vai a fanculo', 'rompicoglioni', 'minchia'
+  'figlio di troia', 'vai a fanculo', 'rompicoglioni',
 ];
 
 const linkVietati = /(https?:\/\/(?!youtube\.com|tiktok\.com|discord\.gg)[^\s]+)/gi;
