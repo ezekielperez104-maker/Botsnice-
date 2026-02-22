@@ -1,6 +1,8 @@
 const { EmbedBuilder } = require('discord.js');
 
 const infrazioni = {};
+module.exports.infrazioni = infrazioni;
+
 const LOG_CHANNEL_ID = '1169637439208443985';
 
 const parolacce = [
@@ -8,15 +10,16 @@ const parolacce = [
   'cogliona', 'idiota', 'imbecille', 'deficiente', 'bastardo', 'bastarda',
   'puttana', 'troia', 'negro', 'negra', 'frocio', 'ricchione', 'ritardato',
   'mongoloide', 'down', 'disabile', 'porco dio', 'porcodio', 'dio cane',
-  'dio porco', 'madonna puttana', 'gesù cristo', 'cristo', 'cazzo di dio',
+  'dio porco', 'madonna puttana', 'cazzo di dio',
   'vaffanculo dio', 'dio bastardo', 'merda', 'figlio di puttana',
-  'figlio di troia', 'vai a fanculo', 'rompicoglioni',
+  'figlio di troia', 'vai a fanculo', 'rompicoglioni'
 ];
 
 const linkVietati = /(https?:\/\/(?!youtube\.com|tiktok\.com|discord\.gg)[^\s]+)/gi;
 
 module.exports = {
   name: 'messageCreate',
+  infrazioni,
   async execute(message) {
     if (message.author.bot) return;
 
