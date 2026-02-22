@@ -22,7 +22,6 @@ module.exports = {
         }
       )
       .setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png')
-      .setImage('https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Ionicons_logo-tiktok.svg/1200px-Ionicons_logo-tiktok.svg.png')
       .setColor(0xFFFF00)
       .setFooter({ text: 'Seguici per restare aggiornato! 🔔' });
 
@@ -37,6 +36,6 @@ module.exports = {
         .setStyle(ButtonStyle.Link)
     );
 
-    interaction.reply({ embeds: [embed], components: [row] });
+    await interaction.reply({ embeds: [embed], components: [row], ephemeral: false });
   }
 };
