@@ -10,13 +10,11 @@ module.exports = {
   async execute(message) {
     if (!message.webhookId) return;
 
-    // Controlla negli embed
-    const embed = message.embeds?.[0];
-    if (!embed) return;
+    const contenutoEmbed = JSON.stringify(message.embeds)?.toLowerCase() || '';
+    const contenutoMessaggio = message.content?.toLowerCase() || '';
+    const tutto = contenutoMessaggio + contenutoEmbed;
 
-    const tuttoIlTesto = JSON.stringify(embed).toLowerCase();
-
-    if (!tuttoIlTesto.includes('tekkit rewards logger') && !tuttoIlTesto.includes('special rewards')) return;
+    if (!tutto.includes('tekkit rewards logger')) return;
 
     // Reset timer inattività
     if (timerInattivita) clearTimeout(timerInattivita);
@@ -35,13 +33,13 @@ module.exports = {
       });
     }, MINUTI_INATTIVITA * 60 * 1000);
 
-    // Controlla Special Rewards nel contenuto del messaggio
-    const contenutoMessaggio = message.content?.toLowerCase() || '';
-    const contenutoEmbed = JSON.stringify(message.embeds)?.toLowerCase() || '';
-    const tutto = contenutoMessaggio + contenutoEmbed;
+    // Controlla Special Rewards
+    // Cerca la parte dopo "special rewards" e controlla se è none
+    const indice = tutto.indexOf('special rewards');
+    if (indice === -1) return;
 
-    if (!tutto.includes('special rewards')) return;
-    if (tutto.includes('"none"') || tutto.includes('none\n') || tutto.includes('none"')) return;
+    const dopoSpecial = tutto.substring(indice + 15, indice + 60).trim();
+    if (dopoSpecial.includes('none')) return;
 
     const alertChannel = message.guild?.channels.cache.get(ALERT_CHANNEL_ID);
     if (!alertChannel) return;
