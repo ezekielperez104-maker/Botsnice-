@@ -38,6 +38,14 @@ client.once('ready', async () => {
   console.log('Comandi registrati!');
 });
 
+client.on('guildMemberAdd', async member => {
+  // Autorole
+  if (global.autoroleId) {
+    const ruolo = member.guild.roles.cache.get(global.autoroleId);
+    if (ruolo) await member.roles.add(ruolo).catch(() => {});
+  }
+});
+
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
     const command = client.commands.get(interaction.commandName);
