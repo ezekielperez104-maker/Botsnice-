@@ -27,7 +27,7 @@ module.exports = {
     const member = interaction.guild.members.cache.get(utente.id);
 
     await member.timeout(minuti * 60 * 1000, motivo);
-    interaction.reply({ content: `✅ **${utente.tag}** mutato per ${minuti} minuti. Motivo: ${motivo}` });
+    interaction.reply({ content: `✅ **${utente.tag}** mutato per ${minuti} minuti. Motivo: ${motivo}`, ephemeral: true });
 
     const logChannel = interaction.guild.channels.cache.get(LOG_CHANNEL_ID);
     if (logChannel) logChannel.send({
