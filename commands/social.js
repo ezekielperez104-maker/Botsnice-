@@ -11,12 +11,12 @@ module.exports = {
       .setDescription('Seguici sui nostri canali social per non perderti nessun contenuto!')
       .addFields(
         {
-          name: '🎥 YouTube',
+          name: '<:youtube:1475146188758974584> YouTube',
           value: '[Clicca qui per visitare il canale](https://youtube.com/@iulotay)',
           inline: true
         },
         {
-          name: '🎵 TikTok',
+          name: '<:tiktok:1475146012313260213> TikTok',
           value: '[Clicca qui per visitare il profilo](https://www.tiktok.com/@yatolui)',
           inline: true
         }
