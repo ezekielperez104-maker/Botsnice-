@@ -31,7 +31,6 @@ client.once('ready', async () => {
   console.log('Comandi registrati!');
 });
 
-// Comandi slash
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
     const command = client.commands.get(interaction.commandName);
@@ -39,7 +38,6 @@ client.on('interactionCreate', async interaction => {
     await command.execute(interaction);
   }
 
-  // Bottoni ticket
   if (interaction.isButton()) {
     if (interaction.customId === 'apri_ticket') {
       const guild = interaction.guild;
@@ -52,10 +50,9 @@ client.on('interactionCreate', async interaction => {
 
       const categoria = guild.channels.cache.find(c => c.name === 'Assistenza' && c.type === 4);
 
-    const canale = await guild.channels.create({
-  name: `ticket-${utente.username}`,
-  parent: categoria ? categoria.id : null,
-
+      const canale = await guild.channels.create({
+        name: `ticket-${utente.username}`,
+        parent: categoria ? categoria.id : null,
         permissionOverwrites: [
           {
             id: guild.id,
@@ -95,7 +92,6 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-// Server HTTP per Render
 const http = require('http');
 http.createServer((req, res) => {
   res.write('Bot online!');
