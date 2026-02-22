@@ -1,6 +1,13 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
 const ROLE_ID = '1168215840592769024';
 
+const CATEGORIE = {
+  'Informazioni': '1168210017309163662',
+  'Community': '1168971934344675340',
+  'Codm': '1169294498392703118',
+  'Assistenza': '1170654541222522900'
+};
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('creacanale')
@@ -18,8 +25,14 @@ module.exports = {
           { name: 'Testuale', value: 'testuale' }
         )
     )
-    .addChannelOption(option =>
+    .addStringOption(option =>
       option.setName('categoria').setDescription('Categoria dove creare il canale').setRequired(true)
+        .addChoices(
+          { name: 'Informazioni', value: '1168210017309163662' },
+          { name: 'Community', value: '1168971934344675340' },
+          { name: 'Codm', value: '1169294498392703118' },
+          { name: 'Assistenza', value: '1170654541222522900' }
+        )
     )
     .setDefaultMemberPermissions(0),
 
@@ -30,14 +43,14 @@ module.exports = {
     const emoji = interaction.options.getString('emoji');
     const nome = interaction.options.getString('nome');
     const tipo = interaction.options.getString('tipo');
-    const categoria = interaction.options.getChannel('categoria');
+    const categoriaId = interaction.options.getString('categoria');
 
     const nomeFinale = `${emoji}┃${nome}`;
 
     const canale = await interaction.guild.channels.create({
       name: nomeFinale,
       type: tipo === 'vocale' ? ChannelType.GuildVoice : ChannelType.GuildText,
-      parent: categoria.id
+      parent: categoriaId
     });
 
     interaction.reply({ content: `✅ Canale **${nomeFinale}** creato! ${canale}`, ephemeral: true });
