@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const ROLE_ID = '1168215840592769024';
 const LOG_CHANNEL_ID = '1169637439208443985';
 
@@ -23,21 +23,19 @@ module.exports = {
     const member = interaction.guild.members.cache.get(utente.id);
 
     await member.timeout(null);
-
-    interaction.reply({ content: `✅ **${utente.tag}** non è più mutato!` });
+    interaction.reply({ content: `✅ **${utente.tag}** non è più mutato!`, ephemeral: true });
 
     const logChannel = interaction.guild.channels.cache.get(LOG_CHANNEL_ID);
     if (logChannel) logChannel.send({
-      embeds: [{
-        title: '📋 Log - Unmute',
-        fields: [
+      embeds: [new EmbedBuilder()
+        .setTitle('📋 Log - Unmute')
+        .addFields(
           { name: '👤 Utente', value: `${utente} (${utente.id})`, inline: true },
           { name: '🛡️ Moderatore', value: `${interaction.user}`, inline: true },
-          { name: '📝 Motivo', value: motivo, inline: true }
-        ],
-        color: 0x00FF00,
-        timestamp: new Date()
-      }]
+          { name: '📝 Motivo', value: motivo }
+        )
+        .setColor(0x00FF00)
+        .setTimestamp()]
     });
   }
 };
