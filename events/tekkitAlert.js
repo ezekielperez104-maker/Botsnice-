@@ -3,7 +3,6 @@ const ALERT_CHANNEL_ID = '1475179611116535952';
 const USER_ID = '948947793874133053';
 const MINUTI_INATTIVITA = 10;
 
-let ultimoMessaggio = null;
 let timerInattivita = null;
 
 module.exports = {
@@ -11,13 +10,15 @@ module.exports = {
   async execute(message) {
     if (!message.webhookId) return;
 
-    const contenuto = message.content + (message.embeds?.map(e => e.description + e.fields?.map(f => f.value).join(' ')).join(' ') || '');
+    // Controlla negli embed
+    const embed = message.embeds?.[0];
+    if (!embed) return;
 
-    if (!contenuto.includes('Tekkit Rewards Logger')) return;
+    const tuttoIlTesto = JSON.stringify(embed).toLowerCase();
 
-    // Aggiorna il timer ogni volta che arriva un messaggio dal webhook
-    ultimoMessaggio = Date.now();
+    if (!tuttoIlTesto.includes('tekkit rewards logger') && !tuttoIlTesto.includes('special rewards')) return;
 
+    // Reset timer inattività
     if (timerInattivita) clearTimeout(timerInattivita);
 
     timerInattivita = setTimeout(async () => {
@@ -34,9 +35,13 @@ module.exports = {
       });
     }, MINUTI_INATTIVITA * 60 * 1000);
 
-    // Controlla Special Rewards
-    if (!contenuto.includes('Special Rewards')) return;
-    if (contenuto.toLowerCase().includes('none')) return;
+    // Controlla Special Rewards nel contenuto del messaggio
+    const contenutoMessaggio = message.content?.toLowerCase() || '';
+    const contenutoEmbed = JSON.stringify(message.embeds)?.toLowerCase() || '';
+    const tutto = contenutoMessaggio + contenutoEmbed;
+
+    if (!tutto.includes('special rewards')) return;
+    if (tutto.includes('"none"') || tutto.includes('none\n') || tutto.includes('none"')) return;
 
     const alertChannel = message.guild?.channels.cache.get(ALERT_CHANNEL_ID);
     if (!alertChannel) return;
