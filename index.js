@@ -72,7 +72,7 @@ client.on('interactionCreate', async interaction => {
       const embed = new EmbedBuilder()
         .setTitle('🎫 Ticket aperto')
         .setDescription(`Ciao ${utente}! Lo staff ti risponderà il prima possibile.\n\nPer chiudere il ticket usa il pulsante qui sotto.`)
-        .setColor(0x2ecc71);
+        .setColor(ffde21);
 
       const row = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
