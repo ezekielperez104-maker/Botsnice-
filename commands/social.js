@@ -21,20 +21,23 @@ module.exports = {
           inline: true
         }
       )
+      .setThumbnail('https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/1024px-YouTube_full-color_icon_%282017%29.svg.png')
       .setColor(0xFFFF00)
       .setFooter({ text: 'Seguici per restare aggiornato! 🔔' });
 
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setLabel('▶️ YouTube')
+        .setLabel('YouTube')
+        .setEmoji('youtube')
         .setURL('https://youtube.com/@iulotay')
         .setStyle(ButtonStyle.Link),
       new ButtonBuilder()
-        .setLabel('🎵 TikTok')
+        .setLabel('TikTok')
+        .setEmoji('tiktok')
         .setURL('https://www.tiktok.com/@yatolui')
         .setStyle(ButtonStyle.Link)
     );
 
-    await interaction.reply({ embeds: [embed], components: [row], ephemeral: false });
+    await interaction.reply({ embeds: [embed], components: [row] });
   }
 };
