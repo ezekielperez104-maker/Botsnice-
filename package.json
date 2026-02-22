@@ -9,3 +9,16 @@
     "discord.js": "^14.0.0"
   }
 }
+
+{
+  "name": "botsnice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "@discordjs/voice": "^0.17.0",
+    "@discordjs/opus": "^0.9.0",
+    "distube": "^4.0.0",
+    "ffmpeg-static": "^5.2.0"
+  }
+}
