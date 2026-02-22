@@ -28,12 +28,10 @@ module.exports = {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setLabel('YouTube')
-        .setEmoji({ id: '1475150486519808020', name: 'youtube' })
         .setURL('https://youtube.com/@iulotay')
         .setStyle(ButtonStyle.Link),
       new ButtonBuilder()
         .setLabel('TikTok')
-        .setEmoji({ id: '1475150620796256357', name: 'tiktok' })
         .setURL('https://www.tiktok.com/@yatolui')
         .setStyle(ButtonStyle.Link)
     );
