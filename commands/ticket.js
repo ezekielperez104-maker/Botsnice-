@@ -20,7 +20,7 @@ module.exports = {
     const embed = new EmbedBuilder()
       .setTitle('🟢 SISTEMA ATTIVO')
       .setDescription('Utilizza il pulsante qui sotto per ricevere assistenza da un membro dello staff. Assicurati di aver letto il messaggio qui sopra per ulteriori informazioni.\n\n> ℹ️ Una volta premuto il pulsante sottostante, verrà creato il tuo ticket nell\'elenco di canali a sinistra')
-      .setColor(ffde21);
+      .setColor(0xFFFF00);
 
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
