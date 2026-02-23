@@ -4,15 +4,22 @@ const infrazioni = {};
 module.exports.infrazioni = infrazioni;
 
 const LOG_CHANNEL_ID = '1169637439208443985';
+const BYPASS_IDS = ['948947793874133053'];
 
 const parolacce = [
+  // Italiano
   'cazzo', 'vaffanculo', 'fanculo', 'stronzo', 'stronza', 'coglione',
   'cogliona', 'idiota', 'imbecille', 'deficiente', 'bastardo', 'bastarda',
   'puttana', 'troia', 'negro', 'negra', 'frocio', 'ricchione', 'ritardato',
   'mongoloide', 'down', 'disabile', 'porco dio', 'porcodio', 'dio cane',
   'dio porco', 'madonna puttana', 'cazzo di dio',
   'vaffanculo dio', 'dio bastardo', 'merda', 'figlio di puttana',
-  'figlio di troia', 'vai a fanculo', 'rompicoglioni'
+  'figlio di troia', 'vai a fanculo', 'rompicoglioni',
+  // Inglese
+  'fuck', 'shit', 'bitch', 'asshole', 'bastard', 'damn', 'cunt',
+  'dick', 'pussy', 'nigger', 'nigga', 'faggot', 'retard', 'whore',
+  'slut', 'motherfucker', 'fucker', 'bullshit', 'jackass', 'dumbass',
+  'idiot', 'moron', 'stupid', 'loser', 'trash', 'scum', 'freak'
 ];
 
 const linkVietati = /(https?:\/\/(?!youtube\.com|tiktok\.com|discord\.gg)[^\s]+)/gi;
@@ -22,6 +29,7 @@ module.exports = {
   infrazioni,
   async execute(message) {
     if (message.author.bot) return;
+    if (BYPASS_IDS.includes(message.author.id)) return;
 
     const userId = message.author.id;
     if (!infrazioni[userId]) infrazioni[userId] = 0;
