@@ -64,7 +64,7 @@ client.on('interactionCreate', async interaction => {
         return interaction.reply({ content: `❌ Hai già un ticket aperto: ${esistente}`, ephemeral: true });
       }
 
-      const categoria = guild.channels.cache.find(c => c.name === 'Assistenza' && c.type === 4);
+      const categoria = guild.channels.cache.get('1170654541222522900');
 
       const canale = await guild.channels.create({
         name: `ticket-${utente.username}`,
