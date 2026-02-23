@@ -6,7 +6,7 @@ const pattern = [
   // Link inviti Discord
   /(discord\.gg|discord\.com\/invite)\/[a-zA-Z0-9]+/gi,
   // Numeri di telefono
-  /(\+39|0039)?\s?3[0-9]{2}\s?[0-9]{6,7}/g,
+/(\+39|0039|\b3)[0-9]{8,9}\b/g,
   // IP
   /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g,
   // Link sospetti
